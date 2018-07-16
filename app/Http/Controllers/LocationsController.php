@@ -71,7 +71,8 @@ class LocationsController extends Controller
      */
     public function edit($id)
     {
-        return "I'm going to edit something";
+        $location = \App\Location::find($id);
+        return view('locations.edit', compact('location'));
     }
 
     /**
@@ -83,7 +84,10 @@ class LocationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "I'm going to update something";
+        $location = \App\Location::find($id);
+        $location->zipcode = $request->input('zip');
+        $location->save();
+        return redirect()->route('locations.index');
     }
 
     /**
