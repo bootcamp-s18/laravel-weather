@@ -8,6 +8,10 @@
 
 @section('stuff')
 
+	<div>
+		<a href="/locations/create">Save a New Location to Your Account</a>
+	</div>
+
 	<div class="d-flex flex-wrap justify-content-start">
 
 	@foreach ($locations as $location)

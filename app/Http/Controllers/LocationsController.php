@@ -34,7 +34,7 @@ class LocationsController extends Controller
      */
     public function create()
     {
-        return "I'm going to create something";
+        return view('locations.new');
     }
 
     /**
@@ -45,7 +45,11 @@ class LocationsController extends Controller
      */
     public function store(Request $request)
     {
-        return "I'm going to store something";
+        $location = new \App\Location;
+        $location->user_id = $request->user()->id;
+        $location->zipcode = $request->input('zip');
+        $location->save();
+        return redirect()->route('locations.index');
     }
 
     /**
