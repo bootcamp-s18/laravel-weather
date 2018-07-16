@@ -34,7 +34,7 @@ class LocationsController extends Controller
      */
     public function create()
     {
-        //
+        return "I'm going to create something";
     }
 
     /**
@@ -45,7 +45,7 @@ class LocationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "I'm going to store something";
     }
 
     /**
@@ -56,7 +56,7 @@ class LocationsController extends Controller
      */
     public function show($id)
     {
-        //
+        return "I'm going to show something";
     }
 
     /**
@@ -67,7 +67,7 @@ class LocationsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "I'm going to edit something";
     }
 
     /**
@@ -79,7 +79,7 @@ class LocationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return "I'm going to update something";
     }
 
     /**
@@ -90,6 +90,8 @@ class LocationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $location = \App\Location::find($id);
+        $location->delete();
+        return redirect()->route('locations.index');
     }
 }
