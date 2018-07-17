@@ -60,7 +60,8 @@ class LocationsController extends Controller
      */
     public function show($id)
     {
-        return "I'm going to show something";
+        $location = \App\Location::find($id);
+        return view('locations.show', compact('location'));
     }
 
     /**
