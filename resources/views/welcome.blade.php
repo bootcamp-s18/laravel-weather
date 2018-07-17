@@ -161,9 +161,11 @@
                     if ("geolocation" in navigator) {
                         /* geolocation is available */
 
-                        navigator.geolocation.getCurrentPosition(function(position) {
-                            getWeather(position.coords.latitude, position.coords.longitude);
-                        });
+                        // navigator.geolocation.getCurrentPosition(function(position) {
+                        //     getWeather(position.coords.latitude, position.coords.longitude);
+                        // });
+
+                        navigator.geolocation.getCurrentPosition(getWeather, locationDenied);
 
                     } else {
                       /* geolocation IS NOT available */
@@ -173,12 +175,18 @@
                 }
             };
 
-            function getWeather(lat, lon) {
+            function locationDenied() {
+
+                content.innerHTML = "<p>An application that helps you view current conditions for places you choose.</><p>Login or Register using the links in the upper right, then save zip codes to quickly access weather for the locations you care about.</p>";
+
+            }
+
+            function getWeather(position) {
 
                 // Set up url for fetching weather data.
                 var url = "https://api.openweathermap.org/data/2.5/weather?lat=<lat>&lon=<lon>&appid=<appId>&us";
-                url = url.replace("<lat>", lat);
-                url = url.replace("<lon>", lon);
+                url = url.replace("<lat>", position.coords.latitude);
+                url = url.replace("<lon>", position.coords.longitude);
                 url = url.replace("<appId>", appId);
 
                 var content = document.getElementById('content');
