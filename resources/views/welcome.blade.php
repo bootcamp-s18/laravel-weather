@@ -169,7 +169,7 @@
             function getWeather(lat, lon) {
 
                 // Set up url for fetching weather data.
-                var url = "http://api.openweathermap.org/data/2.5/weather?lat=<lat>&lon=<lon>&appid=<appId>&us";
+                var url = "https://api.openweathermap.org/data/2.5/weather?lat=<lat>&lon=<lon>&appid=<appId>&us";
                 url = url.replace("<lat>", lat);
                 url = url.replace("<lon>", lon);
                 url = url.replace("<appId>", appId);
