@@ -7,64 +7,11 @@
 
         <title>Weather</title>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
             #error {
                 display: none;
             }
@@ -72,78 +19,107 @@
             #output {
                 display: none;
             }
-
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
+
+        <div id="app">
+
+            <nav class="navbar navbar-expand-md navbar-light navbar-laravel mb-5">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav mr-auto">
+
+                        </ul>
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Authentication Links -->
+
+                            @if (Route::has('login'))
+
+                                    @auth
+                                        <li class="nav-item">
+                                            <a href="{{ url('/home') }}" class="nav-link">Home</a>
+                                        </li>
+                                    @else
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        </li>
+                                    @endauth
+
+                            @endif
+                        </ul>
+
+                    </div>
                 </div>
-            @endif
+            </nav>
 
-            <div id="content" class="content">
-                <div class="title m-b-md">
-                    Weather
+            <div class="container">
+
+                <div id="content" class="text-center">
+                    <h1 style="padding-top: 80px;">Fetching current weather for you...</h1>
                 </div>
-                <div class="links">Fetching current weather for you...</div>
-            </div>
 
-            <div id="error">
-                <div class="card mb-3 border-dark">
-                    <div class="card-header bg-danger text-center font-weight-bold border-dark">Error</div>
-                    <div id="errorMessage" class="card-body"></div>
+                <div id="error">
+                    <div class="card mb-3 border-dark">
+                        <div class="card-header bg-danger text-center font-weight-bold border-dark">Error</div>
+                        <div id="errorMessage" class="card-body"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div id="output">
+                <div id="output">
 
+                    <div class="row">
 
-<div class="row">
+                        <div class="col" style="min-width: 300px;">
 
-    <div class="col" style="min-width: 300px;">
-
-                <div class="card mb-3 border-dark">
-                    <div class="card-header bg-warning text-center font-weight-bold border-dark">City</div>
-                    <div id="cityOutput" class="card-body text-center"></div>
-                </div>
-                <div class="card mb-3 border-dark">
-                    <div class="card-header bg-warning text-center font-weight-bold border-dark">Temperature</div>
-                    <div class="card-body">
-                        <div class="row align-items-center justify-content-center no-gutters">
-                            <div id='temperatureOutputK' class="border border-secondary col text-center pt-3 pb-3"></div>
-                            <div id='temperatureOutputF' class="border border-secondary col text-center pt-3 pb-3"></div>
-                            <div id='temperatureOutputC' class="border border-secondary col text-center pt-3 pb-3"></div>
+                                    <div class="card mb-3 border-dark">
+                                        <div class="card-header bg-warning text-center font-weight-bold border-dark">City</div>
+                                        <div id="cityOutput" class="card-body text-center"></div>
+                                    </div>
+                                    <div class="card mb-3 border-dark">
+                                        <div class="card-header bg-warning text-center font-weight-bold border-dark">Temperature</div>
+                                        <div class="card-body">
+                                            <div class="row align-items-center justify-content-center no-gutters">
+                                                <div id='temperatureOutputK' class="border border-secondary col text-center pt-3 pb-3"></div>
+                                                <div id='temperatureOutputF' class="border border-secondary col text-center pt-3 pb-3"></div>
+                                                <div id='temperatureOutputC' class="border border-secondary col text-center pt-3 pb-3"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3 border-dark">
+                                        <div class="card-header bg-warning text-center font-weight-bold border-dark">Condition</div>
+                                        <div id="condition" class="card-body text-center"></div>
+                                    </div>
+                                
                         </div>
+
+                        <div class="col">
+
+                            <div class="card mb-3 border-dark">
+                                <div class="card-header bg-warning text-center font-weight-bold border-dark">How does it look outside?</div>
+                                <div class="card-body text-center">
+                                    <img alt='' src='' id='weatherImage' width='300'>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
+
                 </div>
-                <div class="card mb-3 border-dark">
-                    <div class="card-header bg-warning text-center font-weight-bold border-dark">Condition</div>
-                    <div id="condition" class="card-body text-center"></div>
-                </div>
-            
-    </div>
-
-    <div class="col">
-
-                <div class="card mb-3 border-dark">
-                    <div class="card-header bg-warning text-center font-weight-bold border-dark">How does it look outside?</div>
-                    <div class="card-body">
-                        <img alt='' src='' id='weatherImage' width='300'>
-                    </div>
-                </div>
-
-    </div>
-
-</div>
-
-
 
             </div>
 
