@@ -8,7 +8,7 @@
 
 @section('stuff')
 
-	<div>
+	<div class="pb-3 pt-1 ml-2">
 		<a href="/locations/create">Save a New Location to Your Account</a>
 	</div>
 
