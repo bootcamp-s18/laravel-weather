@@ -8,9 +8,11 @@
         <title>Weather</title>
 
         <!-- Styles -->
-        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-
-
+        @if (Request::secure())
+            <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+        @else
+            <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        @endif
 
         <!-- Styles -->
         <style>
