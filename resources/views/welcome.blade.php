@@ -177,7 +177,7 @@
 
             function locationDenied() {
 
-                content.innerHTML = "<p>An application that helps you view current conditions for places you choose.</><p>Login or Register using the links in the upper right, then save zip codes to quickly access weather for the locations you care about.</p>";
+                content.innerHTML = "<p>'Weather' is an application that helps you view current conditions for places you choose.</><p>Login or Register using the links in the upper right, then save zip codes to quickly access weather for the locations you care about.</p>";
 
             }
 
@@ -202,11 +202,8 @@
 
             function httpRequestOnError() {
 
-                // TODO: What's reasonable error handling if the request for current weather data at my location fails?
+                locationDenied();
 
-                // output.style.display = 'none';
-                // errorMessage.innerHTML = 'There was a problem reaching the weather API. Try again later.'
-                // error.style.display = 'block';
             }
 
             function catchResponse() {
