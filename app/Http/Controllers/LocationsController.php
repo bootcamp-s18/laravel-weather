@@ -23,7 +23,7 @@ class LocationsController extends Controller
      */
     public function index()
     {
-        $locations = \App\Location::where('user_id', '=', \Auth::user()->id)->get();
+        $locations = \Auth::user()->locations()->get();
         return view('locations.index', compact('locations'));
     }
 

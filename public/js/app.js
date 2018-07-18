@@ -47394,6 +47394,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -47409,11 +47414,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    props: ['zipcode'],
+
     data: function data() {
 
         return {
 
             showOutput: false,
+            lat: '',
+            lon: '',
             cityName: '',
             tempK: '',
             tempF: '',
@@ -47443,9 +47452,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getWeather: function getWeather(position) {
 
             // Set up url for fetching weather data.
-            var url = "https://api.openweathermap.org/data/2.5/weather?lat=<lat>&lon=<lon>&appid=<appId>&us";
-            url = url.replace("<lat>", position.coords.latitude);
-            url = url.replace("<lon>", position.coords.longitude);
+            var url = "http://api.openweathermap.org/data/2.5/weather?zip=<zipCode>&us&appid=<appId>";
+            if (!this.zipcode) {
+                url = "https://api.openweathermap.org/data/2.5/weather?lat=<lat>&lon=<lon>&appid=<appId>&us";
+                url = url.replace("<lat>", position.coords.latitude);
+                url = url.replace("<lon>", position.coords.longitude);
+            } else {
+                url = url.replace("<zipCode>", this.zipcode);
+            }
             url = url.replace("<appId>", this.appId);
 
             // Code that fetches data from the API URL and stores it in results.
@@ -47467,9 +47481,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 var response = JSON.parse(this.apiRequest.responseText);
 
+                console.log(response);
+
                 this.showError = false;
                 this.showStatus = false;
                 this.cityName = response.name;
+                this.lat = response.coord.lat;
+                this.lon = response.coord.lon;
                 this.tempK = Math.round(response.main.temp) + ' K';
                 this.tempF = this.convertKtoF(response.main.temp) + '&deg; F';
                 this.tempC = this.convertKtoC(response.main.temp) + '&deg; C';
@@ -47479,8 +47497,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 this.showError = true;
                 this.showStatus = false;
-                this.showOutput = true;
-                this.error = this.apiRequest.statusText;
+                this.showOutput = false;
+                this.error = '<h3 v-if="zipcode"><strong>Zipcode:</strong> ' + this.zipcode + '</h3>' + this.apiRequest.statusText;
             }
         },
 
@@ -47538,7 +47556,9 @@ var render = function() {
               [_vm._v("Error")]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [_vm._v(_vm._s(_vm.error))])
+            _c("div", { staticClass: "card-body" }, [
+              _c("span", { domProps: { innerHTML: _vm._s(_vm.error) } })
+            ])
           ])
         ])
       : _vm._e(),
@@ -47557,11 +47577,31 @@ var render = function() {
                       staticClass:
                         "card-header bg-warning text-center font-weight-bold border-dark"
                     },
-                    [_vm._v("City")]
+                    [_vm._v("Location")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body text-center" }, [
-                    _vm._v(_vm._s(_vm.cityName))
+                  _c("div", { staticClass: "card-body" }, [
+                    _vm.zipcode
+                      ? _c("h3", [
+                          _c("strong", [_vm._v("Zipcode:")]),
+                          _vm._v(" " + _vm._s(_vm.zipcode))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("strong", [_vm._v("Latitude:")]),
+                      _vm._v(" " + _vm._s(_vm.lat))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("strong", [_vm._v("Longitude:")]),
+                      _vm._v(" " + _vm._s(_vm.lon))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("strong", [_vm._v("City Name:")]),
+                      _vm._v(" " + _vm._s(_vm.cityName))
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
