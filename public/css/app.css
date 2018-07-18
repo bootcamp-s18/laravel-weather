@@ -10475,3 +10475,39 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  background-image: none;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  /* Aligns it at the top */
+}
+
+.carousel-control-next-icon:after {
+  content: '>';
+  font-size: 55px;
+  color: #666;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: #666;
+}
+
+.carousel-inner {
+  padding-top: 80px;
+}
+
+.carousel-control-prev {
+  margin-left: 0;
+}
+
+.carousel-control-next {
+  margin-right: 0;
+}
+
