@@ -47452,7 +47452,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getWeather: function getWeather(position) {
 
             // Set up url for fetching weather data.
-            var url = "http://api.openweathermap.org/data/2.5/weather?zip=<zipCode>&us&appid=<appId>";
+            var url = "https://api.openweathermap.org/data/2.5/weather?zip=<zipCode>&us&appid=<appId>";
             if (!this.zipcode) {
                 url = "https://api.openweathermap.org/data/2.5/weather?lat=<lat>&lon=<lon>&appid=<appId>&us";
                 url = url.replace("<lat>", position.coords.latitude);
