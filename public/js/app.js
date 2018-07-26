@@ -47520,9 +47520,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 42 */
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, exports) {
 
-"use strict";
 
 module.exports.convertKtoF = function convertKtoF(kelvin) {
     if (typeof kelvin == "undefined" || kelvin === null) {
