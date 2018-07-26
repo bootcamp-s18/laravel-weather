@@ -47549,13 +47549,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _vm.showStatus
-      ? _c("div", { staticClass: "text-center" }, [
+      ? _c("div", { staticClass: "status-section text-center" }, [
           _c("span", { domProps: { innerHTML: _vm._s(_vm.status) } })
         ])
       : _vm._e(),
     _vm._v(" "),
     _vm.showError
-      ? _c("div", [
+      ? _c("div", { staticClass: "error-section" }, [
           _c("div", { staticClass: "card mb-3 border-dark" }, [
             _c(
               "div",
@@ -47574,7 +47574,7 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.showOutput
-      ? _c("div", [
+      ? _c("div", { staticClass: "output-section" }, [
           _c("div", { staticClass: "row" }, [
             _c(
               "div",

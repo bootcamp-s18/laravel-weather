@@ -2,18 +2,18 @@
 
     <div class="container">
 
-        <div class="text-center" v-if="showStatus">
+        <div class="status-section text-center" v-if="showStatus">
             <span v-html="status"></span>
         </div>
 
-        <div v-if="showError">
+        <div class="error-section" v-if="showError">
             <div class="card mb-3 border-dark">
                 <div class="card-header bg-danger text-center font-weight-bold border-dark">Error</div>
                 <div class="card-body"><span v-html="error"></span></div>
             </div>
         </div>
 
-        <div v-if="showOutput">
+        <div class="output-section" v-if="showOutput">
 
             <div class="row">
 
