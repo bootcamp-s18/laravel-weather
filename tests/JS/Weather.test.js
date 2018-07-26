@@ -21,6 +21,7 @@ describe("The Weather component", function() {
     it("Renders latitude and longitude after retrieving current location", function(done) {
         wrapper.vm.$nextTick(function() {
             wrapper.html().should.contain("<strong>Latitude:</strong> 38");
+            wrapper.html().should.contain("<strong>Longitude:</strong> -84.58");
             done();
         });
     });
