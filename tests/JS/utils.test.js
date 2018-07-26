@@ -23,6 +23,15 @@ describe("convertKtoF function", function() {
             assert.equal(convertKtoF(331), 136);
         });
     });
+
+    it ("throws TypeError when passed null or undefined", function() {
+        assert.throws(function() { convertKtoF(null); });
+        assert.throws(convertKtoF);
+    });
+
+    it ("converts string arguments to numbers", function() {
+        assert.equal(convertKtoF("184"), -128);
+    });
 });
 
 describe("convertKtoC function", function() {
@@ -44,5 +53,14 @@ describe("convertKtoC function", function() {
         it ("the highest temperature recorded on earth", function() {
             assert.equal(convertKtoC(331), 58);
         });
+    });
+
+    it ("throws TypeError when passed null or undefined", function() {
+        assert.throws(function() { convertKtoC(null); });
+        assert.throws(convertKtoF);
+    });
+
+    it ("converts string arguments to numbers", function() {
+        assert.equal(convertKtoC("184"), -89);
     });
 });
