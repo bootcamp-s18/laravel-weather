@@ -13867,7 +13867,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(48);
+module.exports = __webpack_require__(44);
 
 
 /***/ }),
@@ -47171,11 +47171,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(45)
+var normalizeComponent = __webpack_require__(40)
 /* script */
-var __vue_script__ = __webpack_require__(46)
+var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(43)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47214,12 +47214,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47328,11 +47323,13 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 46 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__utils__);
 //
 //
 //
@@ -47399,6 +47396,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -47489,10 +47488,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.lat = response.coord.lat;
                 this.lon = response.coord.lon;
                 this.tempK = Math.round(response.main.temp) + ' K';
-                this.tempF = this.convertKtoF(response.main.temp) + '&deg; F';
-                this.tempC = this.convertKtoC(response.main.temp) + '&deg; C';
+                this.tempF = Object(__WEBPACK_IMPORTED_MODULE_0__utils__["convertKtoF"])(response.main.temp) + '&deg; F';
+                this.tempC = Object(__WEBPACK_IMPORTED_MODULE_0__utils__["convertKtoC"])(response.main.temp) + '&deg; C';
                 this.condition = response.weather[0].description;
-                this.displayImage(this.convertKtoF(response.main.temp));
+                this.displayImage(Object(__WEBPACK_IMPORTED_MODULE_0__utils__["convertKtoF"])(response.main.temp));
                 this.showOutput = true;
             } else {
                 this.showError = true;
@@ -47500,16 +47499,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.showOutput = false;
                 this.error = '<h3 v-if="zipcode"><strong>Zipcode:</strong> ' + this.zipcode + '</h3>' + this.apiRequest.statusText;
             }
-        },
-
-        convertKtoF: function convertKtoF(kelvin) {
-            var fahr = kelvin * (9 / 5) - 459.67;
-            return Math.round(fahr);
-        },
-
-        convertKtoC: function convertKtoC(kelvin) {
-            var cel = kelvin - 273.15;
-            return Math.round(cel);
         },
 
         displayImage: function displayImage(tempF) {
@@ -47530,7 +47519,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 47 */
+/* 42 */
+/***/ (function(module, __webpack_exports__) {
+
+"use strict";
+
+module.exports.convertKtoF = function convertKtoF(kelvin) {
+    var fahr = kelvin * (9 / 5) - 459.67;
+    return Math.round(fahr);
+};
+
+module.exports.convertKtoC = function convertKtoC(kelvin) {
+    var cel = kelvin - 273.15;
+    return Math.round(cel);
+};
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47713,7 +47718,7 @@ if (false) {
 }
 
 /***/ }),
-/* 48 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

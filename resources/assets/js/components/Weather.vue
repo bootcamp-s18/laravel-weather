@@ -42,7 +42,7 @@
                         <div class="card-header bg-warning text-center font-weight-bold border-dark">Condition</div>
                         <div class="card-body text-center">{{ condition }}</div>
                     </div>
-                        
+
                 </div>
 
                 <div class="col">
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+    import { convertKtoF, convertKtoC } from '../utils';
+
     export default {
 
         mounted() {
@@ -96,13 +98,13 @@
                 tempC: '',
                 condition: '',
                 weatherImage: '',
-                
+
                 showError: false,
                 error: '',
 
                 showStatus: true,
                 status: '<h1>Fetching current weather for you...</h1>',
-                
+
                 apiRequest: null,
                 appId: "ef6a94dab254dc386b931af4d5ca58c7"
 
@@ -160,10 +162,10 @@
                     this.lat = response.coord.lat;
                     this.lon = response.coord.lon;
                     this.tempK = Math.round(response.main.temp) + ' K';
-                    this.tempF = this.convertKtoF(response.main.temp) + '&deg; F';
-                    this.tempC = this.convertKtoC(response.main.temp) + '&deg; C';
+                    this.tempF = convertKtoF(response.main.temp) + '&deg; F';
+                    this.tempC = convertKtoC(response.main.temp) + '&deg; C';
                     this.condition = response.weather[0].description;
-                    this.displayImage(this.convertKtoF(response.main.temp));
+                    this.displayImage(convertKtoF(response.main.temp));
                     this.showOutput = true;
 
                 }
@@ -174,16 +176,6 @@
                     this.error = '<h3 v-if="zipcode"><strong>Zipcode:</strong> ' + this.zipcode + '</h3>' + this.apiRequest.statusText;
                 }
 
-            },
-
-            convertKtoF: function(kelvin) {
-                var fahr = kelvin * (9/5) - 459.67; 
-                return Math.round(fahr);
-            },
-
-            convertKtoC: function(kelvin) {
-                var cel = kelvin - 273.15;
-                return Math.round(cel);
             },
 
             displayImage: function(tempF) {
